@@ -82,9 +82,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public boolean verifyMobileNumbers(String mobile1, String mobile2) {
-		boolean result = false;
+		boolean result = true;
 		if (mobile1.equals(mobile2)) {
-			result = true;
+			result = false;
 		}
 		return result;
 	}
