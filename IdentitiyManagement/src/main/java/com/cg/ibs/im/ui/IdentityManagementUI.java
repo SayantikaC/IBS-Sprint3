@@ -135,10 +135,11 @@ public class IdentityManagementUI {
 		}
 
 	}
-/**
- * 
- * 
- */
+
+	/**
+	 * 
+	 * 
+	 */
 	public void selectCustomerAction() {
 		CustomerMenu choice = null;
 		while (choice != CustomerMenu.GO_BACK) {
@@ -361,18 +362,21 @@ public class IdentityManagementUI {
 			String date = keyboardInput.readLine();
 			DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-			LocalDate localDate = null;
+			LocalDate localDate =  LocalDate.parse(date, dtFormat);
 			CustomerService customer = new CustomerServiceImpl();
 
 			while (localDate == null || !customer.verifyDob(localDate)) {
 				System.out.println(
 						"Please enter a valid date of birth in correct format(dd-MM-yyyy).\nYour age should be greater than 18!");
 				date = keyboardInput.readLine();
-				Pattern pattern = Pattern.compile("((3[01])|([12][0-9])|(0[1-9]))\\-((1[0-2])|(0[1-9]))\\-([0-9]{4})");
+				Pattern pattern = Pattern
+						.compile("((3[01])|([12][0-9])|(0[1-9]))\\-((1[0-2])|(0[1-9]))\\-((19|20)[0-9]{2})");
 				Matcher matcher = pattern.matcher(date);
 				if (matcher.matches()) {
+					
 					localDate = LocalDate.parse(date, dtFormat);
 				} else {
+					System.out.println("Hi");
 					localDate = null;
 				}
 			}
